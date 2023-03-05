@@ -1,0 +1,19 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Главная страница</h1>
+<p>Добро пожаловать в <em>Мир Книг</em>, Это очень простой веб-сайт, написанный на django.
+    Разработан на Python в качестве учебного примера с использованием PyCharm.</p>
+<h2>Динамический контент</h2>
+<p>База данных сайта Мир книг содержит следующие количество записей:</p>
+<ul>
+    <li><strong>Количество книг: </strong>{{ num_books }}</li>
+    <li><strong>Количество экземпляров книг: </strong>{{ num_instances }}</li>
+    <li><strong>Количество экземпляров книг на складе: </strong>{{ num_instances_available_in_stock }}</li>
+    <li><strong>Количество экземпляров книг продано: </strong>{{ num_instances_available_sales }}</li>
+    <li><strong>Количество экземпляров книг в заказе: </strong>{{ num_instances_available_in_order }}</li>
+    <li><strong>Количество авторов книг: </strong>{{ num_authors }}</li>
+</ul>
+{% endblock content %}
+

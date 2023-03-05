@@ -20,6 +20,7 @@ class Language(models.Model):
 
 # Модель для хранения авторов книг.
 class Author(models.Model):
+    objects = None
     first_name = models.CharField(max_length=100, help_text="Введите имя автора", verbose_name="Имя автора")
     last_name = models.CharField(max_length=100, help_text="Введите фамилию автора", verbose_name="Фамилия автора")
     date_of_birth = models.DateField(help_text="Введите дату рождения", verbose_name="Дата рождения", blank=True,
@@ -32,6 +33,7 @@ class Author(models.Model):
 
 # Модель для хранения книг.
 class Book(models.Model):
+    objects = None
     title = models.CharField(max_length=200, help_text="Введите название книги", verbose_name="Название книги")
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, help_text="Выберите жанр книги",
                               verbose_name="Жанр книги", null=True)
@@ -42,6 +44,12 @@ class Book(models.Model):
     summary = models.TextField(max_length=1000, help_text="Введите краткое описание книги",
                                verbose_name="Аннотация книги")
     isbn = models.CharField(max_length=13, help_text="Должно содержать 13 символов", verbose_name="ISBN книги")
+
+    # Настройка отображения списков в админке.
+    def display_author(self):
+        return ', '.join([author.last_name for author in self.author.all()])
+
+    display_author.short_description = 'Авторы'
 
     def __str__(self):
         return self.title
@@ -62,6 +70,7 @@ class Status(models.Model):
 
 # Модель экземпляр книги.
 class BookInstance(models.Model):
+    objects = None
     book = models.ForeignKey('Book', on_delete=models.CASCADE, null=True)
     inv_nom = models.CharField(max_length=20, help_text="Введите инвентарный номер экземпляра",
                                verbose_name="Инвентарный номер", null=True)
