@@ -21,8 +21,7 @@ def index(request):
     # # Авторы книг.
     num_authors = Author.objects.count()
 
-    # Отсортировка HTML-шаблона index.html с данными внутри переменной context.
-    return render(request, 'index.html', {
+    context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
@@ -31,9 +30,26 @@ def index(request):
         'num_instances_available_in_order': num_instances_available_in_order,
         'num_authors': num_authors,
         # 'num_visits': num_visits
-    })
+    }
+    # Отсортировка HTML-шаблона index.html с данными внутри переменной context.
+    return render(request, 'index.html', context=context)
 
 
 # Класс отображения данных.
 class BookListViews(generic.ListView):
     model = Book
+
+
+# Класс отображения всех книг.
+class BookDetailView(generic.DetailView):
+    model = Book
+
+
+# Класс отображения всех авторов. (Сам)
+class AuthorListView(generic.ListView):
+    model = Author
+
+
+# Класс отображения всех авторов. (Сам)
+class AuthorDetailView(generic.DetailView):
+    model = Author

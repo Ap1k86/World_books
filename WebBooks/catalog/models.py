@@ -30,6 +30,10 @@ class Author(models.Model):
     def __str__(self):
         return self.last_name
 
+    def get_absolute_url(self):
+        # Возвращает URL-адрес для доступа к определенному экземпляру книги.
+        return reverse('author-detail', args=[str(self.id)])
+
 
 # Модель для хранения книг.
 class Book(models.Model):

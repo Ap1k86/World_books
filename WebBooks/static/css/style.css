@@ -1,0 +1,21 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+html,
+body,
+.wrapper {
+  height: 100%;
+}
+.content {
+    box-sizing: border-box;
+    min-height: 85%;
+    padding-bottom: 90px;
+}
+.footer {
+    left: 50px;
+    height: 80px;
+    margin-top: -80px;
+}
