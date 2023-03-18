@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from catalog import views
 
 urlpatterns = [
@@ -14,5 +14,9 @@ urlpatterns = [
     path('catalog/authors', views.AuthorListView.as_view(), name='authors'),
     # re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'),
     # Маршрут просмотра определенного автора. (Сам)
-    re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='author-detail'),
+    re_path(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
+    # Добавление URL
+    path('accounts/', include('django.contrib.auth.urls')),
+    #
+    re_path(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed')
 ]

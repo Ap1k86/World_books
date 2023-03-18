@@ -24,16 +24,17 @@ class BookAdmin(admin.ModelAdmin):
 # Регистрируем классы администратора для экземпляров книг.
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_filter = ('book', 'status')
-    # какая то непонятная штука вышла :)
-    # fieldsets = (
-    #     ('Экземпляр книги', {
-    #         'fields': ('book', 'imprint', 'inv-nom')
-    #     }),
-    #     ('Статус и окончание его действия', {
-    #         'fields': ('status', 'due_back')
-    #     })
-    # )
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
+    list_filter = ('status', 'due_back')
+    # Кака-то непонятная штука вышла:)
+    fieldsets = (
+        ('Экземпляр книги', {
+            'fields': ('book', 'imprint', 'inv_nom')
+        }),
+        ('Статус и окончание его действия', {
+            'fields': ('status', 'due_back', 'borrower')
+        })
+    )
 
 
 # Register your models here.

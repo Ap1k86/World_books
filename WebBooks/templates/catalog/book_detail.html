@@ -27,4 +27,5 @@
 {% for value in book.author.filter.values %}
 <p><strong>Автор: </strong><a href="">{{ value.first_name }} {{ value.last_name }}</a></p>
 {% endfor %}
+
 {% endblock content %}
