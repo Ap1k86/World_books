@@ -29,7 +29,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     # Кака-то непонятная штука вышла:)
     fieldsets = (
         ('Экземпляр книги', {
-            'fields': ('book', 'imprint', 'inv_nom')
+            'fields': ('book', 'imprint', 'id')
         }),
         ('Статус и окончание его действия', {
             'fields': ('status', 'due_back', 'borrower')

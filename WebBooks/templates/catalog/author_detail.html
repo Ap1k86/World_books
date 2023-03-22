@@ -6,10 +6,20 @@
 
 <h2>Автор: {{ author.first_name }} {{ author.last_name }}</h2>
 
-<!--<p><strong>Книги автора в каталоге: </strong></p>-->
-<!--{% for book in author.first_name.all %}-->
-<!--<p><strong>{{ book.title }}</strong></p>-->
-<!--{% endfor %}-->
+<p><strong>Годы жизни: </strong> с {{ author.date_of_birth}} по {{ author.date_of_death }}</p>
+<p><strong>Книги автора в каталоге: </strong></p>
+    {% for copy in author.bookinstance_set.all %}
+    {{ copy.get_status_display }}
+    {% endfor %}
+    <h4>Количество экземпляров книг в БД</h4>
+    {% for copy in book.bookinstance_set.all %}
+    <hr>
+    <p class="{% if copy.status == 1 %} text-success {% elif copy.status == 2 %} text-danger {% else %} text-warning {% endif %}">
+        {{ copy.get_status_display }}</p>
+    <p><strong>Издательство: </strong>{{ copy.imprint  }}</p>
+    <p class="text-muted"><strong>Инвентарный номер: </strong>{{ copy.id }}</p>
+    <p><strong>Статус экземпляра книги в БД: </strong>{{ copy.status }}</p>
+    {% endfor %}
 
 
 {% endblock content %}
